@@ -17,14 +17,7 @@ class DataBase{
 
     public function insert($sql, array $binds)
     {
-        $stmt = $this->PDO->prepare($sql);
-
-        foreach ($binds as $key => $value) 
-        {
-            $stmt->bindValue($key, $value);
-        }
-
-        $stmt->execute();
+        $stmt = $this->generico($sql, $binds);
 
         if($stmt->rowCount() > 0){
             return true;
@@ -35,40 +28,35 @@ class DataBase{
 
     public function select($sql, array $binds)
     {
-        $stmt = $this->PDO->prepare($sql);
-        
-        foreach ($binds as $key => $value) {
-            $stmt->bindValue($key, $value);
-        }
-        
-        $stmt->execute();
+        $stmt = $this->generico($sql, $binds);
         
         return $stmt;
     }
 
     public function update($sql, array $binds)
     {
-        $stmt = $this->PDO->prepare($sql);
-
-        foreach ($binds as $key => $value) {
-            $stmt->bindValue($key, $value);
-        }
-
-        $stmt->execute();
+        $stmt = $this->generico($sql, $binds);
 
         return $stmt->rowCount();
     }
 
     public function delete($sql, array $binds)
     {
+        $stmt = $this->generico($sql, $binds);
+
+        return $stmt->rowCount();
+    }
+
+    public function generico($sql, array $binds){
         $stmt = $this->PDO->prepare($sql);
 
-        foreach ($binds as $key => $value) {
+        foreach ($binds as $key => $value) 
+        {
             $stmt->bindValue($key, $value);
         }
 
         $stmt->execute();
 
-        return $stmt->rowCount();
+        return $stmt;
     }
 }
