@@ -14,24 +14,22 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-        <title></title>
+        <link href="css/style.css" rel="stylesheet">
+        <title>Cadastro de Título</title>
     </head>
     <body>
-        <div class="container mt-4">
+        <div class="corpo-da-pagina">
             <form method="post">
-                <h3 class="mb-3">Cadastro de Título</h3>
-                <div class="mb-2 mt-3">
-                    <a href="index.php" class="btn btn-secondary btn-sm">Voltar</a>
+                <h3>Cadastro de Título</h3>
+                <div class="botao-voltar">
+                    <a href="index.php" class="btn btn-cinza btn-pequeno">Voltar</a>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label mb-0">Titulo</label>
-                    <input class="form-control" type="text" name="titulo" required>
+                <label>Titulo</label>
+                <div class="grupo-de-input">
+                    <input class="input-modificado" type="text" name="titulo" required>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label mb-0">Editora</label>
+                <div class="grupo-de-select">
+                    <label>Editora</label>
                     <select class="form-select" name="editora" id="">
                         <?php 
                             foreach ($editoras as $editora) 
@@ -41,28 +39,33 @@
                         ?>
                     </select>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label mb-0">Autor</label>
-                    <input class="form-control" type="text" name="autor" required>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label mb-0">Ano</label>
-                    <input class="form-control" type="text" name="ano" required>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label mb-0">Preco</label>
-                    <input class="form-control" type="text" name="preco" required>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label mb-0">Quantidade</label>
-                    <input class="form-control" type="text" name="quantidade" required>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label mb-0">Tipo</label>
-                    <input class="form-control" type="text" name="tipo" required>
+                
+                <label>Autor</label>
+                <div class="grupo-de-input">
+                    <input class="input-modificado" type="text" name="autor" required>
                 </div>
                 
-                <button class="btn btn-primary" type="submit">Salvar</button>
+                <label>Ano</label>
+                <div class="grupo-de-input">
+                    <input class="input-modificado" type="text" name="ano" required>
+                </div>
+                
+                <label>Preco</label>
+                <div class="grupo-de-input">
+                    <input class="input-modificado" type="text" name="preco" required>
+                </div>
+                
+                <label>Quantidade</label>
+                <div class="grupo-de-input">
+                    <input class="input-modificado" type="text" name="quantidade" required>
+                </div>
+                
+                <label>Tipo</label>
+                <div class="grupo-de-input">
+                    <input class="input-modificado" type="text" name="tipo" required>
+                </div>
+                
+                <button class="btn btn-azul" type="submit">Salvar</button>
             </form>
             <?php
                 $titulo = filter_input(INPUT_POST, 'titulo', FILTER_SANITIZE_STRING);
@@ -82,14 +85,14 @@
                      $result = $DataBase->insert($sql, $binds);
                     if($result)
                     {
-                        echo "<div class='alert alert-success mt-2'>Cadastro realizado com sucesso!</div>";
+                        echo "<div class='alerta alerta-verde'>Cadastro realizado com sucesso!</div>";
                         
                         header("Location: /controledeacervo/public/index.php");
                         exit();
                     }
                     else
                     {
-                        echo "<div class='alert alert-danger'>Houve um erro interno!</div>";
+                        echo "<div class='alerta alerta-vermelho'>Houve um erro interno!</div>";
                     }
                 }
             ?>

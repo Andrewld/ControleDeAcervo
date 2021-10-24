@@ -12,23 +12,21 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-        <title></title>
+        <link href="css/style.css" rel="stylesheet">
+        <title>Acervo</title>
     </head>
     <body>
-        <div class="container mt-4">
-                <h3 class="mb-3">Livros do Acervo</h3>
-            <div class="mb-2 mt-3">
-                <a href="criar.php" class="btn btn-success btn-sm">Adicionar Título</a>
+        <div class="corpo-da-pagina">
+                <h3>Livros do Acervo</h3>
+            <div class="botao-voltar">
+                <a href="criar.php" class="btn btn-verde btn-pequeno">Adicionar Título</a>
             </div>
 
             <form method="GET" action="index.php">
-                <div class="input-group mt-3 mb-3">
-                    <input type="text" class="form-control" placeholder="Buscar por Título" name="busca" value="<?php echo $busca; ?>">
+                <div class="grupo-de-input">
+                    <input type="text" class="input-modificado" placeholder="Buscar por Título" name="busca" value="<?php echo $busca; ?>">
                     <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="submit">Buscar</button>
+                        <button class="btn btn-cinza" type="submit">Buscar</button>
                     </div>
                 </div>
             </form>
@@ -64,8 +62,8 @@
                         echo "<td>{$item->quantidade}</td>";
                         echo "<td>{$item->editora}</td>";
                         echo "<td>{$item->tipo}</td>";
-                        echo "<td><a class='btn btn-primary btn-sm' href='editar.php?id={$item->id}'>Editar</a></td>";
-                        echo "<td><form method='post'><input type='text' name='id' value='{$item->id}' hidden><button class='btn btn-danger btn-sm' type='submit'>Deletar</button></form></td>";
+                        echo "<td><a class='btn btn-azul btn-pequeno' href='editar.php?id={$item->id}'>Editar</a></td>";
+                        echo "<td><form method='post'><input type='text' name='id' value='{$item->id}' hidden><button class='btn btn-vermelho btn-pequeno' type='submit'>Deletar</button></form></td>";
                         echo "</tr>";
                     }
                     echo "</tbody>";
@@ -73,7 +71,7 @@
                 }
                 else
                 {
-                    echo "<div class='alert alert-secondary mt-2'>Nenhum título encontrado!</div>";
+                    echo "<div class='alerta alerta-cinza'>Nenhum título encontrado!</div>";
                 }
             ?>
 
@@ -88,7 +86,7 @@
 
                     if ($result > 0)
                     {
-                        echo "<div class='alert alert-secondary mt-2'>Registro deletado com sucesso!</div>";
+                        echo "<div class='alerta alerta-cinza'>Registro deletado com sucesso!</div>";
                         header("Refresh:2");
                     }
                 }
