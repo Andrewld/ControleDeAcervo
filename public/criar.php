@@ -83,7 +83,8 @@
                     if($result)
                     {
                         echo "<div class='alert alert-success mt-2'>Cadastro realizado com sucesso!</div>";
-                        header("Location: http://localhost/controledeacervo/public/index.php");
+                        
+                        header("Location: /controledeacervo/public/index.php");
                         exit();
                     }
                     else

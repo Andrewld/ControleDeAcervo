@@ -14,7 +14,6 @@
     $sql = "SELECT * FROM acervo WHERE id = :id";
     $binds = ['id' => $id];
     $resultEditar = $DataBase->select($sql, $binds)->fetchObject();
-    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -98,7 +97,7 @@
                     if($result)
                     {
                         echo "<div class='alert alert-success mt-2'>O registro foi atualizado com sucesso!</div>";
-                        header("Location: http://localhost/controledeacervo/public/index.php");
+                        header("Location: /controledeacervo/public/index.php");
                         exit();
                     }
                     else

@@ -1,3 +1,13 @@
+
+<?php
+    require('../app/DataBase.php');
+    $busca="";
+    if (isset($_REQUEST['busca']))
+    {
+        $busca= $_REQUEST['busca'];
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -9,18 +19,21 @@
     </head>
     <body>
         <div class="container mt-4">
-                <h3 class="mb-3">Usuários do Sistema</h3>
+                <h3 class="mb-3">Livros do Acervo</h3>
             <div class="mb-2 mt-3">
                 <a href="criar.php" class="btn btn-success btn-sm">Adicionar Título</a>
             </div>
-            <?php
-                require('../app/DataBase.php');
-                $busca="";
-                if (isset($_REQUEST['busca']))
-                {
-                    $busca= $_REQUEST['busca'];
-                }
 
+            <form method="GET" action="index.php">
+                <div class="input-group mt-3 mb-3">
+                    <input type="text" class="form-control" placeholder="Buscar por Título" name="busca" value="<?php echo $busca; ?>">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="submit">Buscar</button>
+                    </div>
+                </div>
+            </form>
+
+            <?php
                 $DataBase = new DataBase();
                 $sql = "SELECT a.id as id, e.nome as editora, a.titulo as titulo, a.autor as autor, a.ano as ano, a.preco as preco, a.quantidade as quantidade, a.tipo as tipo FROM acervo a, editora e where a.idEditora = e.id and a.id > :id and (a.titulo like '{$busca}%' or a.titulo like '%{$busca}' or a.titulo like '%{$busca}%')";
                 $binds = ['id' => 0];
@@ -60,9 +73,8 @@
                 }
                 else
                 {
-                    echo "<div class='alert alert-secondary mt-2'>O acervo ainda não possui nenhum título</div>";
+                    echo "<div class='alert alert-secondary mt-2'>Nenhum título encontrado!</div>";
                 }
-
             ?>
 
             <?php
@@ -83,6 +95,4 @@
             ?>
         </div>
     </body>
-    <script>
-    </script>
 </html>
